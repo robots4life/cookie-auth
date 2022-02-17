@@ -4,9 +4,9 @@
 	// https://svelte.dev/tutorial/component-events
 	const dispatch = createEventDispatcher();
 
-	let name;
-	let email;
-	let password;
+	let name = 'John';
+	let email = 'hello@world.com';
+	let password = 12345678910;
 	let error;
 
 	async function register() {
