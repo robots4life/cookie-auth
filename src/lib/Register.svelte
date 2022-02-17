@@ -25,9 +25,15 @@
 			});
 
 			if (response.ok) {
-				dispatch('success');
+				const responseDetails = await response.json();
+				// console.log(responseDetails);
+				// pass the message from the returned body from the server register.js along with the dispatch event
+				dispatch('success', {
+					message: responseDetails.message
+				});
 			} else {
-				error = 'An error occured';
+				const errorDetails = await response.json();
+				error = errorDetails.message;
 			}
 		} catch (err) {
 			console.log('An error occured');
@@ -44,3 +50,9 @@
 	<p>{error}</p>
 {/if}
 <button on:click="{register}">Register</button>
+
+<style>
+	p {
+		color: red;
+	}
+</style>

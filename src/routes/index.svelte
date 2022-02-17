@@ -3,9 +3,11 @@
 	import Register from '$lib/Register.svelte';
 	import { goto } from '$app/navigation';
 
-	function redirectToProfile() {
-		// goto('/profile');
-		console.log('Registration success');
+	function redirectToProfile(event) {
+		// console.log(event);
+		// pass the message from the returned body from the server register.js along with the dispatch event
+		console.log(event.detail.message);
+		goto('/profile');
 	}
 </script>
 
