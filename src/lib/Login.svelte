@@ -4,8 +4,8 @@
 	// https://svelte.dev/tutorial/component-events
 	const dispatch = createEventDispatcher();
 
-	let email;
-	let password;
+	let email = 'hello@world.com';
+	let password = 12345678910;
 	let error;
 
 	async function login() {
@@ -23,9 +23,15 @@
 			});
 
 			if (response.ok) {
-				dispatch('success');
+				const responseDetails = await response.json();
+				// console.log(responseDetails);
+				// pass the message from the returned body from the server login.js along with the dispatch event
+				dispatch('success', {
+					message: responseDetails.message
+				});
 			} else {
-				error = 'An error occured';
+				const errorDetails = await response.json();
+				error = errorDetails.message;
 			}
 		} catch (err) {
 			console.log('An error occured');
@@ -41,3 +47,9 @@
 	<p>{error}</p>
 {/if}
 <button on:click="{login}">Login</button>
+
+<style>
+	p {
+		color: red;
+	}
+</style>

@@ -18,7 +18,11 @@ export async function post({ request }) {
 	// and parsing it to produce a JavaScript object.
 	const body = await request.json();
 
+	// Note: all this assumes form field values are given and validated
+	// for production there are a lot more cases and checking necessary
+
 	console.log('================================================================================');
+	console.log('register.js');
 	console.log(Date.now());
 	console.log(body);
 	console.log(body.name);
@@ -26,7 +30,8 @@ export async function post({ request }) {
 	console.log(body.password);
 	console.log('================================================================================');
 
-	const user = await db.get(body.email);
+	// Redis stores values as strings, so we parse the string to obtain a javascript object
+	const user = JSON.parse(await db.get(body.email));
 	console.log(user); // should log null to the terminal if there no user with the provided email address
 
 	// if there is a user with the email address provided already present
@@ -34,6 +39,7 @@ export async function post({ request }) {
 		return {
 			status: 409,
 			body: {
+				// in production you should never give the client too specific info
 				message: 'User with this email address already exists.'
 			}
 		};
