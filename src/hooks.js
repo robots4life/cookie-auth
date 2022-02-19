@@ -19,11 +19,10 @@ export async function handle({ event, resolve }) {
 	// parse the cookies into an object so that we can get the uuid
 	const parsedCookies = cookie.parse(cookies || '');
 
-	// ==
-	// B
 	// if we have a session_id cookie
 	if (parsedCookies.session_id) {
-		//
+		// ==
+		// B
 		// assign the userSession the value we get from the database
 		// by looking for a key in the database that is the session_id cookie value
 		//
@@ -33,15 +32,16 @@ export async function handle({ event, resolve }) {
 		// console.log(userSession);
 
 		if (userSession) {
-			//
-			// in the event locals object we set the user as an object with its email as key and email address as value
+			// ==
+			// C
+			// in the event locals object we set the user as an object with demail as key and email address as value
 			event.locals.user = { email: userSession.email };
 			//
 			// in the event locals object we now have access to the current user's email address for example
 			console.log(event.locals.user.email);
 
-			// ==
-			// C
+			//
+			// D
 			// we now return the modified response by resolving the request
 			const response = await resolve(event);
 			return response;
@@ -54,9 +54,11 @@ export async function handle({ event, resolve }) {
 	}
 }
 
+// https://kit.svelte.dev/docs/hooks#getsession
+// This function takes the event object and returns a session object that is accessible on the client
 export function getSession(event) {
 	// ==
-	// D
+	// E
 	// make the event.locals.user data available on the session
 	//
 	// here a ternary operator check if event.locals.user is populated
