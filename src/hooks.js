@@ -10,29 +10,13 @@ const db = new Tedis({
 });
 
 export async function handle({ event, resolve }) {
-	// the entire request
-	// console.log(event);
 	//
-	// get the values you need from headers
-	// console.log(event.request.headers.get('cookie'));
+	// get the cookies
 	const cookies = event.request.headers.get('cookie');
-	// console.log(cookies);
-
-	// console.log(event.request.headers.get('referer'));
-	// const referer = event.request.headers.get('referer');
-	// console.log(referer);
-
-	//
-	// as an alternative turn headers into an object and populate it with the keys and values
-	const headers = {};
-	event.request.headers.forEach((value, key) => (headers[key] = value));
-	// console.log(headers.referer);
-	// console.log(headers.cookie);
 
 	// A
-	// parse session_id cookie from cookies so that we have the uuid value from it
+	// parse the cookies into an object so that we can get the uuid
 	const parsedCookies = cookie.parse(cookies || '');
-	// console.log(parsedCookies.session_id);
 
 	// B
 	// if we have a session_id cookie
