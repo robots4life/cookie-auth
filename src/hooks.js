@@ -14,10 +14,12 @@ export async function handle({ event, resolve }) {
 	// get the cookies
 	const cookies = event.request.headers.get('cookie');
 
+	// ==
 	// A
 	// parse the cookies into an object so that we can get the uuid
 	const parsedCookies = cookie.parse(cookies || '');
 
+	// ==
 	// B
 	// if we have a session_id cookie
 	if (parsedCookies.session_id) {
@@ -38,6 +40,7 @@ export async function handle({ event, resolve }) {
 			// in the event locals object we now have access to the current user's email address for example
 			console.log(event.locals.user.email);
 
+			// ==
 			// C
 			// we now return the modified response by resolving the request
 			const response = await resolve(event);
@@ -52,6 +55,13 @@ export async function handle({ event, resolve }) {
 }
 
 export function getSession(event) {
+	// ==
+	// D
+	// make the event.locals.user data available on the session
+	//
+	// here a ternary operator check if event.locals.user is populated
+	// and returns it if so
+	// otherwise an empty event object is returned on the session
 	return event.locals.user
 		? {
 				user: {
