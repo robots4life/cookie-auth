@@ -56,7 +56,7 @@ export async function handle({ event, resolve }) {
 
 // https://kit.svelte.dev/docs/hooks#getsession
 // This function takes the event object and returns a session object that is accessible on the client
-export function getSession(event) {
+export async function getSession(event) {
 	// ==
 	// E
 	// make the event.locals.user data available on the session
