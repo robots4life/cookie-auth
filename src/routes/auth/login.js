@@ -19,6 +19,7 @@ export async function post({ request }) {
 	const body = await request.json();
 
 	// Note: all this assumes form field values are given and validated
+	// for production there are a lot more cases and checking necessary
 
 	console.log('================================================================================');
 	console.log('login.js');
