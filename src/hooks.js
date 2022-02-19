@@ -37,11 +37,31 @@ export async function handle({ event, resolve }) {
 			//
 			// in the event locals object we now have access to the current user's email address for example
 			console.log(event.locals.user.email);
-		}
-	}
 
-	//
-	// return the possibly modified response
-	const response = await resolve(event);
-	return response;
+			// C
+			// we now return the modified response by resolving the request
+			const response = await resolve(event);
+			return response;
+		}
+	} else {
+		//
+		// there is no session_id cookie so we return the untouched response
+		const response = await resolve(event);
+		return response;
+	}
+}
+
+export function getSession(event) {
+	return event.locals.user
+		? {
+				user: {
+					// only include properties needed client-side —
+					// exclude anything else attached to the user
+					// like access tokens etc
+					// name: event.locals.user.name,
+					email: event.locals.user.email
+					// avatar: event.locals.user.avatar
+				}
+		  }
+		: {};
 }
