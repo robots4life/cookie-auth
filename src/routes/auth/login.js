@@ -71,13 +71,23 @@ export async function post({ request }) {
 		console.log(cookieForUser); // should log Ok to the terminal
 
 		// now we send back the cookie to the client
+		// we can send 2 or more cookies back if we like
+		// https://kit.svelte.dev/docs/routing#endpoints-setting-cookies
 		const headers = {
-			'Set-Cookie': cookie.serialize('session_id', cookieId, {
-				httpOnly: true,
-				maxAge: 60 * 5, // 5 minutes valid
-				sameSite: 'strict',
-				path: '/profile'
-			})
+			'Set-Cookie': [
+				cookie.serialize('session_id', cookieId, {
+					httpOnly: true,
+					maxAge: 60 * 60, // 60 minutes valid
+					sameSite: 'strict',
+					path: '/profile'
+				}),
+				cookie.serialize('another_cookie', cookieId, {
+					httpOnly: true,
+					maxAge: 60 * 60, // 60 minutes valid
+					sameSite: 'strict',
+					path: '/profile'
+				})
+			]
 		};
 
 		return {
