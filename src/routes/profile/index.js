@@ -10,11 +10,17 @@ export async function get({ locals }) {
 	// ==
 	// G
 	// do your checks here on condition of availability of locals.user
-	console.log(locals);
-	return {
-		status: 200,
-		body: {
-			locals
-		}
-	};
+	if (locals.user) {
+		return {
+			status: 200,
+			body: {
+				locals
+			}
+		};
+	} else {
+		return {
+			status: 302,
+			headers: { Location: '/' }
+		};
+	}
 }

@@ -16,7 +16,7 @@
 	<!--
         https://svelte.dev/tutorial/component-events
 
-        Notice that the Index page/component ist listening to the messages dispatched by 
+        Notice that the Index page/component is listening to the messages dispatched by 
         the Login and Register components thanks to the on:success directive.
         
         This directive is an attribute prefixed with on: followed by the event name that
