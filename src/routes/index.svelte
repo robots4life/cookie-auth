@@ -28,7 +28,9 @@
 
 <style>
 	:global(html) {
-		background-color: #1d2d50;
-		color: slategrey;
+		background-color: antiquewhite;
+	}
+	main {
+		background-color: steelblue;
 	}
 </style>
