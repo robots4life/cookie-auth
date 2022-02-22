@@ -29,6 +29,7 @@
 <style>
 	:global(html) {
 		background-color: antiquewhite;
+		font-family: sans-serif;
 	}
 	main {
 		background-color: steelblue;
