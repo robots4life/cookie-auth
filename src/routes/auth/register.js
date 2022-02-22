@@ -77,6 +77,7 @@ export async function post({ request }) {
 		const headers = {
 			'Set-Cookie': cookie.serialize('session_id', cookieId, {
 				httpOnly: true,
+				// maxAge: 60 * 60, // 60 minutes valid
 				maxAge: 60 * 5, // 5 minutes valid
 				sameSite: 'strict',
 				path: '/profile'
