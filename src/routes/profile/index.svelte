@@ -9,7 +9,7 @@
 		// console.log(event);
 		// pass the message from the returned body from the server register.js along with the dispatch event
 		console.log(event.detail.message);
-		// goto('/');
+		goto('/');
 	}
 </script>
 

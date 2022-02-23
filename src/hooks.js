@@ -13,7 +13,7 @@ export async function handle({ event, resolve }) {
 	//
 	// get the cookies
 	const cookies = event.request.headers.get('cookie');
-
+	console.log(cookies);
 	// ==
 	// A
 	// parse the cookies into an object so that we can get the uuid

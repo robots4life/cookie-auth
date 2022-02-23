@@ -73,23 +73,33 @@ export async function post({ request }) {
 		// now we send back the cookie to the client
 		// we can send 2 or more cookies back if we like
 		// https://kit.svelte.dev/docs/routing#endpoints-setting-cookies
+		// const headers = {
+		// 	'Set-Cookie': [
+		// 		cookie.serialize('session_id', cookieId, {
+		// 			httpOnly: true,
+		// 			maxAge: 60 * 5, // 5 minutes valid
+		// 			sameSite: 'strict',
+		// 			path: '/'
+		// 		}),
+		// 		cookie.serialize('another_cookie', cookieId, {
+		// 			httpOnly: true,
+		// 			maxAge: 60 * 5, // 5 minutes valid
+		// 			sameSite: 'strict',
+		// 			path: '/'
+		// 		})
+		// 	]
+		// };
+
+		// lets try with 1 cookie
+		// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie
+		// https://cheatcode.co/tutorials/how-to-implement-secure-httponly-cookies-in-node-js-with-express
 		const headers = {
-			'Set-Cookie': [
-				cookie.serialize('session_id', cookieId, {
-					httpOnly: true,
-					// maxAge: 60 * 60, // 60 minutes valid
-					maxAge: 60 * 5, // 5 minutes valid
-					sameSite: 'strict',
-					path: '/profile'
-				}),
-				cookie.serialize('another_cookie', cookieId, {
-					httpOnly: true,
-					// maxAge: 60 * 60, // 60 minutes valid
-					maxAge: 60 * 5, // 5 minutes valid
-					sameSite: 'strict',
-					path: '/profile'
-				})
-			]
+			'Set-Cookie': cookie.serialize('session_id', cookieId, {
+				httpOnly: true,
+				maxAge: 60 * 5, // 5 minutes valid
+				sameSite: 'strict',
+				path: '/'
+			})
 		};
 
 		return {
