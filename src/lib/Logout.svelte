@@ -9,7 +9,9 @@
 	async function logout() {
 		error = undefined;
 		try {
-			const response = await fetch('/auth/logout');
+			const response = await fetch('/auth/logout', {
+				method: 'POST'
+			});
 
 			if (response.ok) {
 				const responseDetails = await response.json();
