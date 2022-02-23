@@ -1,6 +1,6 @@
 import * as cookie from 'cookie';
 
-export async function post() {
+export async function post({ request }) {
 	// 2 cookies
 	// const headers = {
 	// 	'Set-Cookie': [
@@ -14,6 +14,9 @@ export async function post() {
 	// 		})
 	// 	]
 	// };
+
+	// const data = await request.json();
+	// console.log(data);
 
 	// 1 cookie
 	const headers = {

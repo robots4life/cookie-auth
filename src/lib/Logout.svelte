@@ -11,6 +11,12 @@
 		try {
 			const response = await fetch('/auth/logout', {
 				method: 'POST'
+				//
+				// not sure if this is the correct way to just send a POST request without body ?
+				// body: JSON.stringify('logout'),
+				// headers: {
+				// 	'Content-Type': 'application/json'
+				// }
 			});
 
 			if (response.ok) {
