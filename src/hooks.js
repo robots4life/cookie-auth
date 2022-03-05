@@ -34,7 +34,7 @@ export async function handle({ event, resolve }) {
 		if (userSession) {
 			// ==
 			// C
-			// in the event locals object we set the user as an object with demail as key and email address as value
+			// in the event locals object we set the user as an object with email as key and email address as value
 			event.locals.user = { email: userSession.email };
 			//
 			// in the event locals object we now have access to the current user's email address for example
